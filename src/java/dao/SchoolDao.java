@@ -31,6 +31,8 @@ public interface SchoolDao
   public ResultSet getReviewById(int id);
   public boolean checkContact(int id,String contact);
   public String SearchBar(String dataString,String SearchBarLeft,String ctx);
+  public ResultSet getFeatured();
+  public String getCoverPicById(int id);
   
   
 }

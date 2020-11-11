@@ -21,8 +21,6 @@ ResultSet rs=(ResultSet)request.getSession().getAttribute("result");
      System.out.println("hello");
    //  System.out.println("scchool id="+rs.getString("schoool_name")+"and school id="+rs.getInt("school_id"));
 }*/
-
-
 %>
 
 
@@ -60,7 +58,6 @@ ResultSet rs=(ResultSet)request.getSession().getAttribute("result");
            //SqlUtil.connectDb();
           // ResultSet phone=SqlUtil.read("select * from contact where school_id='"+id+"'");
            
-
       %>
       <tr>
     <td>
@@ -105,14 +102,12 @@ ResultSet rs=(ResultSet)request.getSession().getAttribute("result");
                        
                        }
                        
-
                         rating=5-rating;
                         for (int i = 1; i <=rating; i++) {
                            %>&nbsp <i class="fas fa-star"></i><%
                         }
   
                        }
-
                    %>
                     
                 </span> 
@@ -159,6 +154,3 @@ ResultSet rs=(ResultSet)request.getSession().getAttribute("result");
 
 
 <%@include file="../blocks/footer.jsp" %>
-
-
-

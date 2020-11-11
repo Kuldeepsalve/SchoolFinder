@@ -75,4 +75,12 @@ public class SchoolService
        {
             return SchoolDaoImpl.SearchBar(dataString,SearchBarLeft,ctx);
        }
+      public ResultSet getFeatured()
+      {
+          return SchoolDaoImpl.getFeatured();
+      }
+      public String getCoverPicById(int id)
+      {
+          return SchoolDaoImpl.getCoverPicById(id);
+      }
 }

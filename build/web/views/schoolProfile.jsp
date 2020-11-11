@@ -271,8 +271,8 @@ System.out.println("all pics displayed");
 					</tr>
           <tr>
             <td>
-              <div class="card">
-               <div class="table-responsive">
+              <div class="card" >
+               <div class="">
                     <table class="table" style="margin-bottom: 0px !important;">
                       <tbody>
                         <th> 
@@ -314,7 +314,7 @@ System.out.println("all pics displayed");
                                          </div>
      
      
-    <div class="row">
+   <div class="row">
     <!-- Grid column -->
     <div class="col" style="padding-right: 0px;  width:10px; margin-left: 15px; margin-top: 10px;">
       <!-- Material input -->

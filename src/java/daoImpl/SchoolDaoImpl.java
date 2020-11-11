@@ -273,10 +273,12 @@ public ResultSet Search(SchoolModel school)
    
     System.err.println("search Query :"+SearchQuery);
          try {
+             SqlUtil.connectDb();
               rs=SqlUtil.read(SearchQuery);
+             
               return rs;
-         } catch (SQLException ex) {
-              System.out.println("exception:"+ex);
+         } catch (Exception ex) {
+              System.out.println("exception in searching :"+ex);
          }
     
             return rs;
@@ -373,7 +375,7 @@ public ArrayList getStreamsById(int id)
                //System.out.println("rating=====for id==="+id+Math.round( Float.parseFloat(rs.getString("rating")) ) );
              return Math.round( Float.parseFloat(rs.getString("rating")) );
           } catch (Exception e) {
-               System.out.println(e.getMessage()+"exception occured ");
+               System.out.println(e.getMessage()+"exception occured in get rating by id ");
           }
         //  System.out.println("end of the function get rating");
           return 0;
@@ -436,6 +438,39 @@ public String SearchBar(String dataString ,String SearchBarLeft,String ctx) {
 
          return result;
      }
+
+    @Override
+    public ResultSet getFeatured() {
+        ResultSet rs=null;
+        try{
+           
+            SqlUtil.connectDb();
+            rs=SqlUtil.read("select * from school , pics_of_school WHERE school.school_id = pics_of_school.school_id and isFeatured=1 GROUP by school.school_id ;");
+   
+            return rs;
+            }
+          catch(Exception ex)
+          {
+          System.out.println("exception in getFeatured : "+ex);
+          }
+        System.out.println("Gett featured completed");
+        return rs;
+    }
+
+    @Override
+    public String getCoverPicById(int id) {
+        String p=null;
+        try {
+         ResultSet  rs=SqlUtil.read("select picture_path from pics_of_school where school_id="+id);
+         
+         if(rs.next())
+            return p=rs.getString("picture_path");
+         
+        } catch (Exception e) {
+            System.out.println("Exceptiion occured in daoimpl method getCoverPicById"+ e);
+        }
+        return p;
+    }
 }
 
 

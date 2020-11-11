@@ -8,18 +8,6 @@
 <%@page import="util.SqlUtil" %>
 <%@page import="java.sql.*" %>
 <%@page import="service.SchoolService"%>
-<%
-    SqlUtil.createDb("create database if not exists school_finder");
-    SqlUtil.connectDb();
-    
-    
-    
-    String school_table="create table if not exists school(school_id int(100) auto_increment primary key not null,school_name varchar(50),affilliation_number varchar(50),board varchar(30),medium varchar(30),upto_class int(11),email varchar(50) unique not null,locality varchar(50),area varchar(50),city varchar(30),state varchar(30),pin_code int(11),year int(11),type varchar(30),principal_name varchar(30),principal_phone varchar(15),principal_msg varchar(200),principal_email varchar(20),director_name varchar(30),director_phone varchar(15),director_msg varchar(200),director_email varchar(30),website varchar(1000));";
-    SqlUtil.create(school_table);
-    
-    String contact_table="create table if not exists contact(school_id int(100),phone varchar(15));";
-    SqlUtil.create(contact_table);
-%>
 
 <% String ctx=application.getContextPath();%>
 <!DOCTYPE html>
@@ -534,62 +522,13 @@ h6 {
 </div>
 <!--Modal: login Form-->
 
-
-
-
-
-
-
-    <!-- /Start your project here-->
-<!--Double navigation-->
     <header style="max-height: 90% !important;">
-      <!-- Sidebar navigation -->
-      <div id="slide-out" class="side-nav fixed" style="background-color: white;" >
-        <ul class="custom-scrollbar">
-          <!-- Logo -->
-          <li>
-            <div class="logo-wrapper waves-light">
-              <a href="#"><img src="<%=ctx%>/assets/images/logo.png" class="img-fluid flex-center"></a>
-            </div>
-          </li>
-          <!--/. Logo -->
-          <!--Social-->
-          <li>
-            <ul class="social">
-              <li ><a href="#" class="icons-sm fb-ic"><i style="color: #3b5999;" class="fab fa-facebook-f"> </i></a></li>
-              <li><a href="#" class="icons-sm pin-ic"><i style="color:#bd081c ;" class="fab fa-pinterest"> </i></a></li>
-              <li><a href="#" class="icons-sm gplus-ic"><i style="color:#dd4b39 ;" class="fab fa-google-plus-g"> </i></a></li>
-              <li><a href="#" class="icons-sm tw-ic"><i style="color:#55acee ;" class="fab fa-twitter"> </i></a></li>
-            </ul>
-          </li>
-          <!--/Social-->
-        
-          <!-- Side navigation links -->
-          <li>
-            <ul  style="color: black !important;">
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-chevron-right"></i> Submit blog</a>
-              </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-hand-pointer"></i> Instruction</a>
-                
-              </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-eye"></i> About</a>
-              </li>
-              <li><a class="collapsible-header waves-effect arrow-r"><i class="far fa-envelope"></i> Contact me</a></li>
-            </ul>
-          </li>
-          <!--/. Side navigation links -->
-        </ul>
-        
-      
-      </div>
-      <!--/. Sidebar navigation -->
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg white double-nav fixed-top scrolling-navbar" style="position: fixed !important;">
         <!-- SideNav slide-out button -->
         <div class="float-left">
-         <a href="#" style="float: left;" data-activates="slide-out" class="button-collapse black-text"><i class="fa fa-bars" aria-hidden="true"></i>
+        
          <a href="#"><img src="<%=ctx%>/assets/images/logo.png" class="navlogo img-fluid" alt="Responsive image"></a>
-          </a>
         </div>
 
 

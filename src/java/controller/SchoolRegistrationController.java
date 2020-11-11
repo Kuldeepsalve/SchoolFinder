@@ -80,7 +80,7 @@ SchoolModel school=new SchoolModel(school_name, year, board, affilliation_number
         
         result2=service.imageUpload(it,buildPath);
          if(result1==1 && result2>0){
-        resp.sendRedirect(ctx+"/views/Home.jsp");
+        resp.sendRedirect(ctx+"/views/schoolFinder.jsp");
     }
      } 
      catch (Exception e)

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 18, 2020 at 02:18 AM
+-- Generation Time: Nov 11, 2020 at 01:27 PM
 -- Server version: 5.7.21
--- PHP Version: 7.1.16
+-- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -48,9 +48,17 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
-  `School_id` varchar(20) NOT NULL,
+  `school_id` int(11) NOT NULL,
   `Phone` varchar(15) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`school_id`, `Phone`) VALUES
+(52, '07312349021'),
+(53, '7773001640');
 
 -- --------------------------------------------------------
 
@@ -91,9 +99,30 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 DROP TABLE IF EXISTS `pics_of_school`;
 CREATE TABLE IF NOT EXISTS `pics_of_school` (
-  `School_id` varchar(20) NOT NULL,
+  `school_id` int(11) NOT NULL,
   `picture_path` varchar(300) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pics_of_school`
+--
+
+INSERT INTO `pics_of_school` (`school_id`, `picture_path`) VALUES
+(52, '521.jpg'),
+(52, '522.jpg'),
+(52, '523.jpg'),
+(52, '524.jpg'),
+(52, '525.jpg'),
+(52, '526.jpg'),
+(52, '527.jpg'),
+(53, '531.JPG'),
+(53, '532.jpg'),
+(53, '533.jpg'),
+(53, '534.jpg'),
+(53, '535.jpg'),
+(53, '536.jpg'),
+(53, '537.jpg'),
+(53, '538.jpg');
 
 -- --------------------------------------------------------
 
@@ -104,14 +133,23 @@ CREATE TABLE IF NOT EXISTS `pics_of_school` (
 DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
-  `School_id` varchar(20) NOT NULL,
+  `School_id` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `Review_content` varchar(400) NOT NULL,
   `Name` varchar(30) NOT NULL,
   `Review_date` date NOT NULL,
   `contact` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`review_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `School_id`, `rating`, `Review_content`, `Name`, `Review_date`, `contact`) VALUES
+(15, 52, 4, 'Best school in indore.', 'kuldeep salve', '2020-09-19', '8959359132'),
+(16, 52, 5, 'Finding best school for your child ? Go and get the admission in this school.', 'Prateek chouhan', '2020-09-19', '7806056241'),
+(17, 52, 3, 'Great facilities are available at this school.', 'Manoj Borse', '2020-09-21', '7804063651');
 
 -- --------------------------------------------------------
 
@@ -122,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `review` (
 DROP TABLE IF EXISTS `school`;
 CREATE TABLE IF NOT EXISTS `school` (
   `school_id` int(100) NOT NULL AUTO_INCREMENT,
-  `school_name` varchar(50) DEFAULT NULL,
+  `school_name` varchar(2000) DEFAULT NULL,
   `affilliation_number` varchar(50) DEFAULT NULL,
   `board` varchar(30) DEFAULT NULL,
   `medium` varchar(30) DEFAULT NULL,
@@ -137,16 +175,25 @@ CREATE TABLE IF NOT EXISTS `school` (
   `type` varchar(30) DEFAULT NULL,
   `principal_name` varchar(30) DEFAULT NULL,
   `principal_phone` varchar(15) DEFAULT NULL,
-  `principal_msg` varchar(200) DEFAULT NULL,
-  `principal_email` varchar(20) DEFAULT NULL,
+  `principal_msg` varchar(2000) DEFAULT NULL,
+  `principal_email` varchar(50) DEFAULT NULL,
   `director_name` varchar(30) DEFAULT NULL,
   `director_phone` varchar(15) DEFAULT NULL,
-  `director_msg` varchar(200) DEFAULT NULL,
-  `director_email` varchar(30) DEFAULT NULL,
+  `director_msg` varchar(2000) DEFAULT NULL,
+  `director_email` varchar(50) DEFAULT NULL,
   `website` varchar(1000) DEFAULT NULL,
+  `isFeatured` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`school_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `school`
+--
+
+INSERT INTO `school` (`school_id`, `school_name`, `affilliation_number`, `board`, `medium`, `upto_class`, `email`, `locality`, `area`, `city`, `state`, `pin_code`, `year`, `type`, `principal_name`, `principal_phone`, `principal_msg`, `principal_email`, `director_name`, `director_phone`, `director_msg`, `director_email`, `website`, `isFeatured`) VALUES
+(52, 'Shri Balvinay Mandir School, Chhatribagh', '1030640', 'cbse board', 'English', 12, 'shreebalvinaymandir@gmail.com', '30', 'Chattribagh', 'Indore', 'Madhya pradesh', 452002, 1954, 'co-ed', 'Mrs. Shveta Garg ', '07312349021', 'As concerned parents, you always want your child to get an education that lets him or her do better in life.', 'principal@gmail.com', 'Shri Hanskumar jain', '07312342688', 'The school management committee consist of a team of dedicated , self motivated ,who are deeply committed to their jobs to lead the school in the path of progress .', 'director@gmail.com', 'http://sbvmchhatribagh.com', 1),
+(53, 'M.G.M.CO-ED.HR.SEC. SCHOOL', '1030449', 'cbse board', 'English', 12, 'mgmschoolbhopal@yahoo.com', 'Amrawadkhurd', 'B.D.A. Road, barkhera', 'Bhopal', 'Madhya pradesh', 462002, 1992, 'co-ed', 'FR. XAVIER T. DANIEL', '7773001639', '\r\nEducation is the most important and everlasting wealth, which parents long to inculcate on their children. No man can live as an island in his journey. Education gives a vital part for him/her to be social, economical & spiritual. As a result he/she comes out into the world and faces the challenges and the difficulties. A child is a turning point when his/her parents start looking for a better school that influences the child in his personal & intellectual growth. MGM is a place which understands the children from inside & prepares them as the world wants them to be.', 'principalmgm@gmail.com', 'FR. LIJO JOHN', '07552491884', 'INSTRUCTION ENDS IN THE SCHOOL ROOM, BUT EDUCATION ENDS ONLY WITH LIFE, A CHILD TO THE UNIVERSE TO BE EDUCATED.\r\nEducation is a service to the development of human person and the society at large. It has mainly three parts: information, formation and transformation. So education is a synonym for development for formation of the society. The value based teaching and learning has become an educational challenge in the competitive age. Realizing these facts, the Malankara Orthodox Syrian Church Management established its institutions. The School is named Mar Gregorios who is the first Saint canonized by the Orthodox Syrian Church of India. ', 'directormgm@gmail.com', 'http://mgmschoolbhopal.com/index.php', 1);
 
 -- --------------------------------------------------------
 
@@ -159,6 +206,35 @@ CREATE TABLE IF NOT EXISTS `school_with_streams` (
   `school_id` int(100) NOT NULL,
   `stream_id` varchar(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `school_with_streams`
+--
+
+INSERT INTO `school_with_streams` (`school_id`, `stream_id`) VALUES
+(52, 'strm1'),
+(52, 'strm3'),
+(52, 'strm4'),
+(52, 'strm6'),
+(52, 'strm9'),
+(52, 'strm10'),
+(52, 'strm11'),
+(52, 'strm12'),
+(52, 'strm14'),
+(53, 'strm1'),
+(53, 'strm2'),
+(53, 'strm3'),
+(53, 'strm4'),
+(53, 'strm5'),
+(53, 'strm6'),
+(53, 'strm7'),
+(53, 'strm8'),
+(53, 'strm9'),
+(53, 'strm10'),
+(53, 'strm11'),
+(53, 'strm12'),
+(53, 'strm13'),
+(53, 'strm14');
 
 -- --------------------------------------------------------
 
