@@ -40,15 +40,11 @@ if(school.next())
      
      
 }
-ResultSet phn=s.getPhoneById(id);
+String phn=s.getPhoneById(id);
 
 
 ArrayList phone = new ArrayList();
-while(phn.next())
-{
-//phone[i]=phn.getString("phone");
-     phone.add(phn.getString("phone"));
-  }
+
 ArrayList streams=new ArrayList();
 streams=s.getStreamsById(id);
 //System.out.println("stream:"+streams.get(2));
@@ -190,7 +186,7 @@ System.out.println("all pics displayed");
 													<td>
 														<span style="font-size: 20px;"><i class="fas fa-phone"></i></span>
 														<span style="font-weight: bold; color: #0d47a1;">&nbsp Phone:</span>
-                                                                                                                                                                                                                                                                                                                            <span><% for (int j=0;j<phone.size();j++) {%><%=phone.get(j)%> <% }%>  </span>
+                                                                                                                                                                                                                                                                                                                            <span><%=phn%>  </span>
 													</td>
 												</tr>
 

@@ -37,7 +37,8 @@ public class SchoolService
     {
         return SchoolDaoImpl.getStreams();
     }
-    public ResultSet Search(SchoolModel school)
+    public ArrayList Search(SchoolModel school)
+           
     {
         return SchoolDaoImpl.Search(school);
     }
@@ -45,7 +46,7 @@ public class SchoolService
     {
          return SchoolDaoImpl.getPicById(id);
     }
-    public ResultSet getPhoneById(int id)
+    public String getPhoneById(int id)
     {
          return SchoolDaoImpl.getPhoneById(id);
     }

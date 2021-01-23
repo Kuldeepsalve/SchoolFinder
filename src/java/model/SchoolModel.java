@@ -35,11 +35,62 @@ public class SchoolModel
      private String director_email;
      private String website;
      private String streams[];
+     private int rating;
+     private int id;
+     private String coverPic;
+     private String phone ;             
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCoverPic() {
+        return coverPic;
+    }
+
+    public void setCoverPic(String coverPic) {
+        this.coverPic = coverPic;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+     
 
     @Override
     public String toString() {
         //return  school_name+" "+year+" "+board+" "+affilliation_number+" "+medium+" "+type+" "+director_name+" "+director_contact+" "+principal_name+" "+principal_contact+" "+principals_message+" "+directors_message+" "+upto_class+" "+locality+" "+area+" "+city+" "+state+" "+pin_code+" "+contact_number+" "+email+" "+principal_email+" "+director_email+" "+website+" "+streams ;  //To change body of generated methods, choose Tools | Templates.
        return board+" "+medium+" "+type+" "+upto_class+" "+locality+" "+area+" "+city+" "+state+" "+pin_code+" "+streams;
+    }
+    
+    public SchoolModel(int id,String coverPic,int rating,String school_name,String locality,String area,String city,String state, int pin_code,String phone )
+    {
+        this.school_name = school_name;
+        this.id = id;
+        this.coverPic = coverPic;
+        this.rating = rating;
+        this.locality= locality;
+        this.area = area;
+        this.city= city;
+        this.state = state;
+        this.pin_code =pin_code;
+        this.phone = phone;
     }
 
      public SchoolModel(String school_name, int year, String board, String affilliation_number, String medium, String type, String director_name, String director_contact, String principal_name, String principal_contact, String principals_message, String directors_message, int upto_class, String locality, String area, String city, String state, int pin_code, String contact_number, String email, String principal_email, String director_email, String website, String[] streams) {

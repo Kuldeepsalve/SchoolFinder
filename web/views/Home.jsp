@@ -34,7 +34,9 @@
 
                         </div>
                         <input type="text" class="form-control kullu" aria-label="Sizing example input" onkeyup ="show(this.value)" aria-describedby="inputGroup-sizing-default">
+                    
                     </div>
+                    <div class="input-group mb-3" id="result" style="margin-top: 30px;"></div>
 
 
 
@@ -73,7 +75,7 @@
 <!-- Full Page Intro -->
 
 </header>
-<div class="list-group overflow-auto"  id="result"></div>
+
 <div class="row" style="margin:0px !important;">
 
     <div class="col-lg-4" style="">

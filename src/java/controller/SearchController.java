@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,8 @@ public class SearchController extends HttpServlet
      }
      SchoolModel school=new SchoolModel(req.getParameter("board"), req.getParameter("medium"), req.getParameter("type"),upto_class, req.getParameter("locality"), req.getParameter("area"), req.getParameter("city"), req.getParameter("state"),pin_code, req.getParameterValues("stream"));
      SchoolService service=new SchoolService(); 
-    ResultSet rs= service.Search(school);
+    ArrayList rs=new ArrayList();
+    rs  =service.Search(school);
     String context=req.getServletContext().getContextPath();
       try {
           

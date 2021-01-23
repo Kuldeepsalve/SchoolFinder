@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.Part;
 import model.SchoolModel;
+import service.SchoolService;
 import util.SqlUtil;
 /**
  *
@@ -206,7 +207,7 @@ String query= "select * from streams";
     
    
   @Override
-public ResultSet Search(SchoolModel school)
+public ArrayList Search(SchoolModel school)
 {
     ResultSet rs=null;
     
@@ -275,13 +276,44 @@ public ResultSet Search(SchoolModel school)
          try {
              SqlUtil.connectDb();
               rs=SqlUtil.read(SearchQuery);
-             
-              return rs;
+            ArrayList<SchoolModel> SchoolList= new ArrayList();
+            ArrayList<SchoolModel> SchoolList2= new ArrayList();
+           
+            while(rs.next())    
+            { 
+                int id= rs.getInt("school_id");
+                String school_name = rs.getString("school_name");
+                String locality= rs.getString("locality");
+                String area =rs.getString("area");
+                String city = rs.getString("city");
+                String state = rs.getString("state");
+                int pin_code = rs.getInt("pin_code");
+                
+           
+                SchoolModel schoolTemp = new SchoolModel(id,null,0,school_name,locality,area,city,state,pin_code,null);
+                SchoolList.add(schoolTemp);
+            }
+            
+           for(int i=0 ; i<SchoolList.size() ; i++)
+           {
+           SchoolModel sch = SchoolList.get(i);
+           SchoolService s=new SchoolService();
+           int rating=s.getRatingById(sch.getId());
+           String pic =s.getCoverPicById(sch.getId());
+           String phone= s.getPhoneById(sch.getId());
+           
+           SchoolModel schoolTemp = new SchoolModel(sch.getId(),pic,rating,sch.getSchool_name(),sch.getLocality(),sch.getArea(),sch.getCity(),sch.getState(),sch.getPin_code(),phone);
+           SchoolList2.add(schoolTemp);
+           }
+            
+            
+            
+              return SchoolList2;
          } catch (Exception ex) {
               System.out.println("exception in searching :"+ex);
          }
     
-            return rs;
+            return null;
 }
 
 @Override
@@ -300,17 +332,18 @@ public ResultSet getPicById(int id)
 }
 
 @Override
-public ResultSet getPhoneById(int id){
+public String getPhoneById(int id){
       ResultSet rs=null;
          try {
               
               rs=SqlUtil.read("select * from contact where school_id="+id);
+             if(rs.next())
+                 return rs.getString("phone");
              
-              return rs;
          } catch (Exception ex) {
               System.out.println("exception get phone exceptiion"+ex);
          }
-         return rs;
+         return null;
 }
 
 @Override
@@ -354,7 +387,7 @@ public ArrayList getStreamsById(int id)
      public void addReview(String School_id, int rating, String review_content, String name, String contact,boolean check) {
          try {
               if(check){
-                     SqlUtil.update("update review set review_content='"+review_content+"',rating='"+rating+"',name='"+name+"',review_date=curdate();");
+                     SqlUtil.update("update review set review_content='"+review_content+"',rating='"+rating+"',name='"+name+"',review_date=curdate() where contact ='"+contact+"';");
                    
               }
              else    

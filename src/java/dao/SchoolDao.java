@@ -21,9 +21,9 @@ public interface SchoolDao
   public void Connect();
   public int imageUpload(Iterator<Part> it,String buildPath);
   public ResultSet getStreams();
-  public ResultSet Search(SchoolModel school);
+  public ArrayList Search(SchoolModel school);
   public ResultSet getPicById(int id);
-  public ResultSet getPhoneById(int id);
+  public String getPhoneById(int id);
   public ResultSet getSchoolById(int id);
   public ArrayList getStreamsById(int id);
   public void addReview(String School_id,int rating,String review_content,String name,String contact,boolean check);
